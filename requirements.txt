@@ -1,0 +1,8 @@
+python-dotenv
+pandas
+numpy
+pathlib
+pymongo
+scikit-learn
+seaborn
+matplotlib
