@@ -2,3 +2,5 @@ network_venv
 .env
 Network_Data
 logs
+notes.txt
+pymong_conn.py
