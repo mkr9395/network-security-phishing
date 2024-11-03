@@ -9,7 +9,7 @@ class NetworkSecurityException(Exception):
         
         self.lineno=exc_tb.tb_lineno
         self.file_name=exc_tb.tb_frame.f_code.co_filename 
-        
+        # logger.error(f"Error occured in python script name [{self.file_name}] line number [{self.lineno}] error message [{self.error_message}]")
         # Log the error here
         # logger.logging.info("error in importing exception")
     def __str__(self):

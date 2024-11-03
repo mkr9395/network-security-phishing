@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass # dataclass acts as decorator for empty classes
 
 @dataclass
 class DataIngestionArtifact:

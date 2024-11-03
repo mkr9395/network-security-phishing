@@ -22,7 +22,7 @@ class TrainingPipelineConfig:
         timestamp (datetime, optional): Timestamp for pipeline execution. Defaults to current datetime.
     """
         # Convert timestamp to string format 
-        timestamp = timestamp.strftime("%Y-%m-%d %H:%M:%S")
+        timestamp = timestamp.strftime("%m_%d_%Y_%H_%M_%S")
         
         # Get pipeline name from training_pipeline constants folder
         self.pipeline_name = training_pipeline.FILE_NAME
@@ -31,7 +31,9 @@ class TrainingPipelineConfig:
         self.artifact_name = training_pipeline.ARTIFACT_DIR
         
         # Construct artifact directory path using artifact name and timestamp
-        self.artifact_dir = os.path.join(self.artifact_name, timestamp)
+        self.artifact_dir = os.path.join(self.artifact_name,timestamp)
+        
+        self.model_dir=os.path.join("final_model")
         
         # Store timestamp for future reference
         self.timestamp = timestamp
@@ -48,7 +50,7 @@ class DataIngestionConfig:
         
         # Initialize data ingestion directory path using artifact directory from training pipeline config
         self.data_ingestion_dir: str = os.path.join(training_pipeline_config.artifact_dir,
-                                                   training_pipeline.DATA_INGESTION_DIR_NAME)
+                                                    training_pipeline.DATA_INGESTION_DIR_NAME)
         
         # Define feature store file path within data ingestion directory
         self.feature_store_file_path: str = os.path.join(self.data_ingestion_dir, 
@@ -63,7 +65,7 @@ class DataIngestionConfig:
                                                    training_pipeline.DATA_INGESTION_INGESTED_DIR, training_pipeline.TEST_FILE_NAME)
         
         # Define train-test split ratio
-        self.train_test_split_ratio: float = training_pipeline.DATA_INGESTION_TRAIN_TEST_SPLIT_RATION
+        self.train_test_split_ratio: float = training_pipeline.DATA_INGESTION_TRAIN_TEST_SPLIT
         
         # Define collection name for database interactions
         self.collection_name: str = training_pipeline.DATA_INGESTION_COLLECTION_NAME
