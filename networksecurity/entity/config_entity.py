@@ -75,4 +75,36 @@ class DataIngestionConfig:
         
     
 
-class 
+class DataValidationConfig:
+    """
+    Class representing the configuration for data validation
+    """
+    # Initializes the data validation configuration
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        
+        # Directory path for data validation artifacts
+        self.data_validation_dir: str = os.path.join(training_pipeline_config.artifact_dir, 
+                                                     training_pipeline.DATA_VALIDATION_DIR_NAME)
+        
+        # Directory path for valid data
+        self.valid_data_dir: str = os.path.join(self.data_validation_dir, training_pipeline.DATA_VALIDATION_VALID_DIR)
+        
+        # Directory path for invalid data
+        self.invalid_data_dir: str = os.path.join(self.data_validation_dir, training_pipeline.DATA_VALIDATION_INVALID_DIR)
+        
+        # File path for valid training data
+        self.valid_train_file_path: str = os.path.join(self.valid_data_dir, training_pipeline.TRAIN_FILE_NAME)
+        
+        # File path for valid testing data
+        self.valid_test_file_path: str = os.path.join(self.valid_data_dir, training_pipeline.TEST_FILE_NAME)
+        
+        # File path for invalid training data
+        self.invalid_train_file_path: str = os.path.join(self.invalid_data_dir, training_pipeline.TRAIN_FILE_NAME)
+        
+        # File path for invalid testing data
+        self.invalid_test_file_path: str = os.path.join(self.invalid_data_dir, training_pipeline.TEST_FILE_NAME)
+        
+        #  Path to the data drift report file, used to track changes in data distribution
+        self.data_drift_report_file = os.path.join(self.data_validation_dir,
+                                                   training_pipeline.DATA_VALIDATION_DRIFT_REPORT_DIR,  
+                                                   training_pipeline.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME)
