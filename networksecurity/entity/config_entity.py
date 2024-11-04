@@ -22,7 +22,8 @@ class TrainingPipelineConfig:
         timestamp (datetime, optional): Timestamp for pipeline execution. Defaults to current datetime.
     """
         # Convert timestamp to string format 
-        timestamp = timestamp.strftime("%m_%d_%Y_%H_%M_%S")
+        # timestamp = timestamp.strftime("%m_%d_%Y_%H_%M_%S")
+        timestamp = 'Folder'
         
         # Get pipeline name from training_pipeline constants folder
         self.pipeline_name = training_pipeline.FILE_NAME
@@ -105,6 +106,6 @@ class DataValidationConfig:
         self.invalid_test_file_path: str = os.path.join(self.invalid_data_dir, training_pipeline.TEST_FILE_NAME)
         
         #  Path to the data drift report file, used to track changes in data distribution
-        self.data_drift_report_file_path = os.path.join(self.data_validation_dir,
-                                                   training_pipeline.DATA_VALIDATION_DRIFT_REPORT_DIR,  
-                                                   training_pipeline.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME)
+        self.drift_report_file_path: str = os.path.join(self.data_validation_dir,
+                                                        training_pipeline.DATA_VALIDATION_DRIFT_REPORT_DIR,
+                                                        training_pipeline.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME)

@@ -47,25 +47,24 @@ class DataValidation:
         
     def detect_dataset_drift(self, base_df, current_df, threshold=0.05)-> bool:
         try:
-            status = True
-            report = {}
-            
+            status=True
+            report={}
             for column in base_df.columns:
-                d1 = base_df[column]
-                d2 = current_df[column]
-                is_same_dist = ks_2samp(d1, d2)
-                
-                if threshold <= is_same_dist.pvalue:
-                    is_found = False
+                d1=base_df[column]
+                d2=current_df[column]
+                is_same_dist=ks_2samp(d1,d2)
+                if threshold<=is_same_dist.pvalue:
+                    is_found=False
                 else:
-                    is_found = True
-                    status = False
-                report.update({column: {
-                    "p_value": float(is_same_dist.pvalue),
-                    "drift_status": is_found
-                }})
+                    is_found=True
+                    status=False
+                report.update({column:{
+                    "p_value":float(is_same_dist.pvalue),
+                    "drift_status":is_found
+                    
+                    }})
             
-            drift_report_file_path = self.data_validation_config.data_drift_report_file_path
+            drift_report_file_path = self.data_validation_config.drift_report_file_path
             
             # create directory and save the report as yaml file
             dir_path = os.path.dirname(drift_report_file_path)
@@ -115,7 +114,7 @@ class DataValidation:
                 valid_test_file_path = self.data_validation_config.valid_test_file_path,
                 invalid_train_file_path=None,
                 invalid_test_file_path= None,
-                drift_report_file_path = self.data_validation_config.data_drift_report_file_path
+                drift_report_file_path = self.data_validation_config.drift_report_file_path
             )
                 
         except Exception as e:
