@@ -32,7 +32,8 @@ class TrainingPipelineConfig:
         self.artifact_name = training_pipeline.ARTIFACT_DIR
         
         # Construct artifact directory path using artifact name and timestamp
-        self.artifact_dir = os.path.join(self.artifact_name,timestamp)
+        self.artifact_dir = os.path.join(self.artifact_name)
+        # self.artifact_dir = os.path.join(self.artifact_name,timestamp)
         
         self.model_dir=os.path.join("final_model")
         
