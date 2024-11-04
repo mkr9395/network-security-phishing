@@ -72,3 +72,7 @@ class DataIngestionConfig:
         
         # Define database name for database interactions
         self.database_name: str = training_pipeline.DATA_INGESTION_DATABASE_NAME
+        
+    
+
+class 
