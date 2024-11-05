@@ -127,28 +127,4 @@ class DataTransformationConfig:
         training_pipeline_config (TrainingPipelineConfig): Configuration object for training pipeline.
         """
         # Set data transformation directory path
-        self.data_transformation_dir: str = os.path.join(training_pipeline_config.artifact_dir, 
-                                                         training_pipeline.DATA_VALIDATION_DIR_NAME)
-        
-        # Set valid data directory path
-        self.valid_data_dir: str = os.path.join(self.data_validation_dir, 
-                                                training_pipeline.DATA_VALIDATION_VALID_DIR)
-        
-        # Set invalid data directory path
-        self.invalid_data_dir: str = os.path.join(self.data_validation_dir, 
-                                                  training_pipeline.DATA_VALIDATION_INVALID_DIR)
-        
-        # Set file paths for valid training and testing data
-        self.valid_train_file_path: str = os.path.join(self.valid_data_dir, training_pipeline.TRAIN_FILE_NAME)
-        
-        self.valid_test_file_path: str = os.path.join(self.valid_data_dir, training_pipeline.TEST_FILE_NAME)
-       
-        # Set file paths for invalid training and testing data 
-        self.invalid_train_file_path: str = os.path.join(self.invalid_data_dir, training_pipeline.TRAIN_FILE_NAME)
-        
-        self.invalid_test_file_path: str = os.path.join(self.invalid_data_dir, training_pipeline.TEST_FILE_NAME)
-        
-        # Set file path for data drift report
-        self.drift_report_file_path: str = os.path.join(self.data_validation_dir, 
-                                                        training_pipeline.DATA_VALIDATION_DRIFT_REPORT_DIR,
-                                                        training_pipeline.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME)       
+        self.data_transformation_dir: str =     
