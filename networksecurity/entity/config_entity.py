@@ -149,16 +149,27 @@ class DataTransformationConfig:
         
 
 class ModelTrainerConfig:
-    
+    """
+    Configuration class for model training
+    """    
+    # Initializes the configuration with training pipeline settings
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        """
+        Args:
+            training_pipeline_config (TrainingPipelineConfig): Configuration for the training pipeline.
+        """
+        # Directory for model trainer artifacts
         self.model_trainer_dir: str = os.path.join(training_pipeline_config.artifact_dir,
                                                    training_pipeline.MODEL_TRAINER_DIR_NAME)  
         
+        # File path for the trained model
         self.trained_model_file_path: str = os.path.join(self.model_trainer_dir, 
                                                          training_pipeline.MODEL_TRAINER_TRAINED_MODEL_DIR,
                                                          training_pipeline.MODEL_FILE_NAME) 
         
+        # Minimum expected accuracy for the trained model
         self.expected_accuracy: float = training_pipeline.MODEL_TRAINER_EXPECTED_SCORE
         
+        # Threshold for detecting overfitting/underfitting
         self.overfitting_underfitting_threshold = training_pipeline.MODEL_TRAINER_OVER_FITTING_UNDER_FITTING_THRESHOLD
         
