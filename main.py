@@ -37,7 +37,7 @@ if __name__=='__main__':
         
         logging.info("Initiated Data Transformation")
         data_transformation_artifact = data_transformation.initiate_data_transformation()
-        logging.info("Completed Data Transformation")
+        logging.info("Completed Data Transformation\n")
         print(data_transformation_artifact) 
         
         

@@ -102,6 +102,7 @@ class DataTransformation:
                 transformed_train_file_path = self.data_transformation_config.transformed_train_file_path,
                 transformed_test_file_path = self.data_transformation_config.transformed_test_file_path,
             )
+            return data_transformation_artifacts
             
     
         except Exception as e:
