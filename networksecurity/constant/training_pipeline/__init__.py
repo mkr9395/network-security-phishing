@@ -17,6 +17,9 @@ TEST_FILE_NAME: str = 'test.csv'
 
 SCHEMA_FILE_PATH :str = os.path.join('data_schema', 'schema.yaml') # inside data_schema folder, we have schema.yaml file
 
+# while creating ModelTrainer file
+SAVED_MODEL_DIR = os.path.join("saved_models")
+MODEL_FILE_NAME = "model.pkl"
 
 """
 Data Ingestion related constant start with DATA_INGESTION VAR NAME
