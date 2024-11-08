@@ -1,6 +1,7 @@
 import os, sys
 import pandas as pd
 import numpy as np
+import mlflow
 
 
 from networksecurity.entity.artifact_entity import DataTransformationArtifact
@@ -35,6 +36,19 @@ class ModelTrainer:
             self.data_transformation_artifact = data_transformation_artifact
         except Exception as e:
             raise NetworkSecurityException(e,sys)
+        
+    def track_mlflow(self, best_model, classication_metric):
+        mlflow.set_tracking_uri("http://localhost:5000")
+        with mlflow.start_run():
+            f1_score = classication_metric.f1_score
+            precision_score = classication_metric.precision_score
+            recall_score = classication_metric.recall_score
+            
+            mlflow.log_metrics({'f1_score': f1_score, 'precision_score': precision_score, 'recall_score': recall_score})
+            mlflow.sklearn.log_model(best_model, "model")
+            
+    
+    
     
     def train_model(self, X_train, y_train, X_test, y_test):
         try:
@@ -89,12 +103,15 @@ class ModelTrainer:
             
             classification_train_metric = get_classification_score(y_true = y_train, y_pred = y_train_pred)
             
-            ## Track the mlflow
-            
+            ## Track the experiments with mlflow -> for train data
+            self.track_mlflow(best_model, classification_train_metric)
             
             y_test_pred = best_model.predict(X_test)
             
             classification_test_metric = get_classification_score(y_true = y_test, y_pred = y_test_pred)
+            
+            ## Track the experiments with mlflow -> for test data
+            self.track_mlflow(best_model, classification_test_metric)
             
             preprocessor = load_object(file_path = self.data_transformation_artifact.transformed_object_file_path)
             

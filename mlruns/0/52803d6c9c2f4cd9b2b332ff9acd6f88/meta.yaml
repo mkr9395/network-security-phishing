@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/52803d6c9c2f4cd9b2b332ff9acd6f88/artifacts
+end_time: 1731099488731
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 52803d6c9c2f4cd9b2b332ff9acd6f88
+run_name: dapper-fowl-46
+run_uuid: 52803d6c9c2f4cd9b2b332ff9acd6f88
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731099486833
+status: 3
+tags: []
+user_id: Asus
