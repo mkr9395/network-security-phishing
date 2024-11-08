@@ -96,6 +96,9 @@ class DataTransformation:
             
             save_object(self.data_transformation_config.transformed_object_file_path, preprocessor)
             
+            # saving preprocessor inside final_model folder
+            save_object("final_model/preprocessor.pkl", preprocessor)
+            
             # preparing artifacts
             data_transformation_artifacts = DataTransformationArtifact(
                 transformed_object_file_path = self.data_transformation_config.transformed_object_file_path,
