@@ -2,7 +2,7 @@ import os, sys
 import pandas as pd
 import numpy as np
 import mlflow
-
+import dagshub
 
 from networksecurity.entity.artifact_entity import DataTransformationArtifact
 from networksecurity.entity.artifact_entity import ModelTrainerArtifact
@@ -26,6 +26,8 @@ from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier, Ran
 
 from sklearn.metrics import f1_score, precision_score, recall_score
 
+dagshub.init(repo_owner='mkr9395', repo_name='network-security-phishing', mlflow=True)
+
 
 class ModelTrainer:
     
@@ -38,7 +40,7 @@ class ModelTrainer:
             raise NetworkSecurityException(e,sys)
         
     def track_mlflow(self, best_model, classication_metric):
-        mlflow.set_tracking_uri("http://localhost:5000")
+        mlflow.set_tracking_uri("https://dagshub.com/mkr9395/network-security-phishing.mlflow")
         with mlflow.start_run():
             f1_score = classication_metric.f1_score
             precision_score = classication_metric.precision_score
