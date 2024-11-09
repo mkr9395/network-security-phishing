@@ -48,9 +48,9 @@ class TrainingPipeline:
         
     def start_data_validation(self, data_ingestion_artifact: DataIngestionArtifact):
         try:
-            self.data_validation_config = DataValidationConfig(training_pipeline_config = self.training_pipeline_config)
+            data_validation_config = DataValidationConfig(training_pipeline_config = self.training_pipeline_config)
             
-            data_validation = DataValidation(data_ingestion_artifact = data_ingestion_artifact, data_validation_config = data_validation_config)
+            data_validation = DataValidation(data_ingestion_artifact = data_ingestion_artifact, data_validation_config = data_validation_config )
             
             logging.info("Started Data Validation")
             
@@ -67,7 +67,7 @@ class TrainingPipeline:
     def start_data_transformation(self, data_validation_artifact: DataValidationArtifact):
         try:
             
-            self.data_transformation_config = DataTransformationConfig(training_pipeline_config= self.training_pipeline_config)
+            data_transformation_config = DataTransformationConfig(training_pipeline_config= self.training_pipeline_config)
             
             logging.info("Started Data Transformation")
             
@@ -113,7 +113,7 @@ class TrainingPipeline:
             
             data_transformation_artifact = self.start_data_transformation(data_validation_artifact = data_validation_artifact)
             
-            data_trainer_artifact = self.start_model_trainer(data_transformation_artifact= data_transformation_artifact)
+            model_trainer_artifact = self.start_model_trainer(data_transformation_artifact= data_transformation_artifact)
             
             return model_trainer_artifact
         
