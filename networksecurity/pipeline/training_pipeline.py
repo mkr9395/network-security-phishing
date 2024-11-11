@@ -15,7 +15,6 @@ from networksecurity.entity.config_entity import (
     DataTransformationConfig,
     ModelTrainerConfig
 )
-
 from networksecurity.entity.artifact_entity import (
     DataIngestionArtifact,
     DataValidationArtifact,
@@ -23,10 +22,15 @@ from networksecurity.entity.artifact_entity import (
     ClassificationMetricArtifact,
     ModelTrainerArtifact
 )
+
+from networksecurity.constant.training_pipeline import TRAINING_BUCKET_NAME
+from networksecurity.constant.training_pipeline import SAVED_MODEL_DIR
+from networksecurity.cloud.s3_syncer import S3Sync
+
 class TrainingPipeline:
     def __init__(self):
         self.training_pipeline_config = TrainingPipelineConfig()
-        self.s3_sync = s3Sync()
+        self.s3_sync = S3Sync()
         
              
     def start_data_ingestion(self):
@@ -117,7 +121,7 @@ class TrainingPipeline:
         
         try:
             aws_bucket_url = f"s3://{TRAINING_BUCKET_NAME}/final_model"
-            self.s3_sync.sync_folder_to_s3(folder = slef.training_pipeline_config.model_dir, aws_bucket_url = aws_bucket_url)
+            self.s3_sync.sync_folder_to_s3(folder = self.training_pipeline_config.model_dir, aws_bucket_url = aws_bucket_url)
         
         except Exception as e:
             raise NetworkSecurityException(e, sys)
